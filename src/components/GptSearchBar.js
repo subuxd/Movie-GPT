@@ -24,7 +24,7 @@ const GptSearchBar = () => {
   };
 
   const handleGptSearchClick = async () => {
-    console.log(searchText.current.value);
+    // console.log(searchText.current.value);
     // Make an API call to GPT API and get movie results
 
     const gptQuery =
@@ -36,7 +36,7 @@ const GptSearchBar = () => {
       messages: [{ role: "user", content: gptQuery }],
       model: "gpt-3.5-turbo",
     });
-    console.log(gptResults.choices?.[0]?.message?.content);
+    // console.log(gptResults.choices?.[0]?.message?.content);
     // O/P: Gadar, 12th Fail, Pathaan, Fighter, Crakk
     const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
     // after this line it becomes array ["Gadar", "12th Fail", "Pathaan", "Fighter", "Crakk"]
@@ -46,7 +46,7 @@ const GptSearchBar = () => {
     // [Promise, Promise, Promise, Promise, Promise]
 
     const tmdbResults = await Promise.all(promiseArray);
-    console.log(tmdbResults);
+    // console.log(tmdbResults);
 
     dispatch(
       addGptSearchView({ movieNames: gptMovies, movieResults: tmdbResults })
@@ -54,9 +54,9 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[10%] flex justify-center">
+    <div className="pt-[45%] md:pt-[10%] flex justify-center">
       <form
-        className="w-1/2 bg-black grid grid-cols-12"
+        className="w-full md:w-1/2 bg-black grid grid-cols-12"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
